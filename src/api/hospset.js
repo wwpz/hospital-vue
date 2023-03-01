@@ -7,5 +7,25 @@ export default {
       method: 'POST',
       data: data
     })
+  },
+  updateHospset(data){
+    return request({
+      url: '/hosp/hospitalset/update',
+      method: 'PUT',
+      data: data
+    })
+  },
+  removeHospsetById(val){
+    return request({
+      url: '/hosp/hospitalset/deletes/' + val,
+      method: 'DELETE',
+    })
+  },
+  removeHospsetByIds(data){
+    return request({
+      url: '/hosp/hospitalset/deletes',
+      method: 'DELETE',
+      data: data
+    })
   }
 }
