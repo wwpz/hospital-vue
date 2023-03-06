@@ -16,7 +16,7 @@
 
             <el-button type="success" @click="addPage" size="mini">新增</el-button>
             <el-button type="warning" @click="editPage" size="mini">修改</el-button>
-            <el-button type="primary" @click="getList" size="mini">查询</el-button>
+            <el-button type="primary" @click="getHospList" size="mini">查询</el-button>
             <el-button type="danger" @click="removeHosp" size="mini">批量删除</el-button>
           </el-form>
         </div>
@@ -172,9 +172,9 @@ export default {
       total: 0,   // 分页条数
     }
   }, created() {
-    this.getList()
+    this.getHospList()
   }, methods: {
-    getList() {
+    getHospList() {
       hospset.getHospsetList(this.queryHospForm).then(result => {
         this.total = result.total
         this.hospTable = result.objects
@@ -187,7 +187,7 @@ export default {
     pageClick(pageSize) {
       console.log(pageSize)
       this.queryHospForm.pageSize = pageSize;
-      this.getList();
+      this.getHospList();
     },
     /**
      * 页数跳转事件
@@ -196,7 +196,7 @@ export default {
     pageJump(page) {
       console.log(page)
       this.queryHospForm.page = page;
-      this.getList();
+      this.getHospList();
     },
     /**
      * 表单选择事件,通过 <el-table-column type="selection" width="55"></el-table-column> 在表单前生成一个选择框
@@ -224,7 +224,7 @@ export default {
             type: 'success',
             message: '删除成功!'
           });
-          this.getList();
+          this.getHospList();
         })
       })
     },
@@ -242,7 +242,7 @@ export default {
           type: 'success',
           message: '修改成功!'
         });
-        this.getList();
+        this.getHospList();
       })
     },
     /**
@@ -259,7 +259,7 @@ export default {
             type: 'success',
             message: '删除成功!'
           });
-          this.getList();
+          this.getHospList();
         })
       })
     },
@@ -281,7 +281,7 @@ export default {
         });
         this.addHospForm = {};
         this.$refs['addHospRulesForm'].resetFields();   // 重置表单校验
-        this.getList();
+        this.getHospList();
       })
     },
     /**
@@ -315,7 +315,7 @@ export default {
           hospset.updateHospset(this.editForm).then(result => {
             this.editVisible = false;
             this.$refs['form'].clearValidate();   // 重置表单校验
-            this.getList();
+            this.getHospList();
           })
         }
       })
